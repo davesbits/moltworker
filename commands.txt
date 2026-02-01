@@ -1,0 +1,28 @@
+npm install
+npx wrangler secret put ANTHROPIC_API_KEY   # or AI_GATEWAY_* pair
+export MOLTBOT_GATEWAY_TOKEN=$(openssl rand -hex 32)
+echo "$MOLTBOT_GATEWAY_TOKEN" | npx wrangler secret put MOLTBOT_GATEWAY_TOKEN
+npm run deploy
+
+AI_GATEWAY_API_KEY` | Yes* | API key for your AI Gateway provider (requires `AI_GATEWAY_BASE_URL`) |
+| `AI_GATEWAY_BASE_URL` | Yes* | AI Gateway endpoint URL (required when using `AI_GATEWAY_API_KEY`) |
+| `ANTHROPIC_API_KEY` | Yes* | Direct Anthropic API key (fallback if AI Gateway not configured) |
+| `ANTHROPIC_BASE_URL` | No | Direct Anthropic API base URL (fallback) |
+| `OPENAI_API_KEY` | No | OpenAI API key (alternative provider) |
+| `CF_ACCESS_TEAM_DOMAIN` | Yes* | Cloudflare Access team domain (required for admin UI) |
+| `CF_ACCESS_AUD` | Yes* | Cloudflare Access application audience (required for admin UI) |
+| `MOLTBOT_GATEWAY_TOKEN` | Yes | Gateway token for authentication (pass via `?token=` query param) |
+| `DEV_MODE` | No | Set to `true` to skip CF Access auth + device pairing (local dev only) |
+| `DEBUG_ROUTES` | No | Set to `true` to enable `/debug/*` routes |
+| `SANDBOX_SLEEP_AFTER` | No | Container sleep timeout: `never` (default) or duration like `10m`, `1h` |
+| `R2_ACCESS_KEY_ID` | No | R2 access key for persistent storage |
+| `R2_SECRET_ACCESS_KEY` | No | R2 secret key for persistent storage |
+| `CF_ACCOUNT_ID` | No | Cloudflare account ID (required for R2 storage) |
+| `TELEGRAM_BOT_TOKEN` | No | Telegram bot token |
+| `TELEGRAM_DM_POLICY` | No | Telegram DM policy: `pairing` (default) or `open` |
+| `DISCORD_BOT_TOKEN` | No | Discord bot token |
+| `DISCORD_DM_POLICY` | No | Discord DM policy: `pairing` (default) or `open` |
+| `SLACK_BOT_TOKEN` | No | Slack bot token |
+| `SLACK_APP_TOKEN` | No | Slack app token |
+| `CDP_SECRET` | No | Shared secret for CDP endpoint authentication (see [Browser Automation](#optional-browser-automation-cdp)) |
+| `WORKER_URL` | No | Public URL of the worker (required for CDP) |
